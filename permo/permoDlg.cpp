@@ -3041,6 +3041,8 @@ void CpermoDlg::StopCapture(void)
 
 void CpermoDlg::StartCapture(void)
 {
+	if (g_nAdapters <= 0)
+		return;
 	g_bCapture = true;
 	g_hCaptureThread = CreateThread(0, 0, CaptureThread, 0, 0, 0);
 }
