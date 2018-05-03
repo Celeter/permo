@@ -88,7 +88,9 @@ int PcapNetFilter::FindDevices()
 
 TCHAR *PcapNetFilter::GetName(int i) // Return ANSI string
 {
-    static char name[256];
+	if (_devices == nullptr)
+		return _T("");
+	static char name[256];
     static TCHAR tName[256];
 
     // Get the Name of Npf Device
@@ -136,7 +138,9 @@ TCHAR *PcapNetFilter::GetName(int i) // Return ANSI string
 
 bool PcapNetFilter::Select(int i)
 {
-    char errbuf[PCAP_ERRBUF_SIZE];
+	if (_devices == nullptr)
+		return _T("");
+	char errbuf[PCAP_ERRBUF_SIZE];
 
     // Get the Name of Npf Device
     pcap_if_t *dev = _devices;
